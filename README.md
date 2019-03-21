@@ -32,3 +32,10 @@ See the file Contributing.md for more information on how you can contribute to t
 1. RC servo(s) and/or scope (to control a servo)
 1. RC servo controller(s) or 555 timer circuit to generate PWM to be read
 1. Optional: Scope for examining clock signals for one chapter
+
+Notes:
+======
+
+1. When compiling and you get the error message getline.c:5:20: fatal error: memory.h: No such file or directory, at the line where it is coded as "#include <memory.h>", you may have to change that to "#include <string.h>" instead. The compiler folks have sometimes moved the header file.
+
+1. It has been reported that: Kubuntu 18.04 ships with arm-none-eabi-gcc (15:6.3.1+svn253039-1build1) 6.3.1 20170620, with this compiler the code does not work (creates problems for FreeRTOS). memcpy seems to be the problematic function call in the code, it is called by FreeRTOS when adding an element to the queue. (details in the FreeRTOS discussion on SourceForge)
